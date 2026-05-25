@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone *)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "PowerShell(winget install *)",
+      "PowerShell(gh *)",
+      "Bash(Get-ChildItem \"C:\\\\Users\\\\Bruno\\\\Desktop\\\\clinicaforza\")",
+      "Bash(Select-Object Name)",
+      "Bash(npm install *)",
+      "WebFetch(domain:clinicaforzabh.com.br)",
+      "Bash(git pull *)",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'feat: substituir Qualidade de Vida por Longevidade nos serviços *)"
+    ]
+  }
+}

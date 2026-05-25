@@ -25,9 +25,9 @@ const services = [
   },
   {
     icon: '◈',
-    title: 'Qualidade de Vida',
+    title: 'Longevidade',
     description:
-      'Medicina preventiva e longevidade com foco no paciente como um todo — corpo, mente e propósito.',
+      'Estratégias baseadas em evidências para envelhecer com vitalidade e funcionalidade.',
   },
 ]
 
