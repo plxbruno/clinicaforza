@@ -31,7 +31,7 @@ export default function Header() {
         </a>
 
         <a
-          href="https://wa.me/5531988930840?text=Olá.%20Quero%20agendar%20uma%20consulta."
+          href="https://wa.me/5531983239199?text=Olá.%20Quero%20agendar%20uma%20consulta%20com%20o%20Dr.%20Bruno."
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-gold text-forest text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gold-light transition-colors duration-200"

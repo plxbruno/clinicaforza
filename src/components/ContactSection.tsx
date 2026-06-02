@@ -1,7 +1,7 @@
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5531999999999'
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5531983239199'
 
 export default function ContactSection() {
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá.%20Quero%20agendar%20uma%20consulta.`
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá.%20Quero%20agendar%20uma%20consulta%20com%20o%20Dr.%20Bruno.`
 
   return (
     <section id="contato" className="py-28 bg-forest">

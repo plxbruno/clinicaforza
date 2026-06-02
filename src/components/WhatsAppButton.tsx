@@ -1,9 +1,9 @@
 'use client'
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5531999999999'
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5531983239199'
 
 export default function WhatsAppButton() {
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá.%20Quero%20agendar%20uma%20consulta.`
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá.%20Quero%20agendar%20uma%20consulta%20com%20o%20Dr.%20Bruno.`
 
   return (
     <>
