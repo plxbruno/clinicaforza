@@ -1,7 +1,7 @@
 const plans = [
   {
     name: 'Consulta Médica',
-    price: '500',
+    price: '450',
     period: 'por consulta',
     description: 'Avaliação clínica completa com o Dr. Bruno Galdino.',
     features: [
