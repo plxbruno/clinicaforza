@@ -1,11 +1,20 @@
+import Reveal from './Reveal'
+
 export default function Doctor() {
   return (
-    <section id="sobre" className="py-28 bg-forest">
+    <section id="sobre" className="py-20 md:py-44">
       <div className="max-w-7xl mx-auto px-6">
+        <Reveal className="mb-8 lg:mb-10 lg:pl-24">
+          <p className="flex items-center justify-center lg:justify-start gap-3 text-gold/80 text-xs font-medium tracking-[0.25em] uppercase">
+            <span className="h-px w-8 bg-gold/40" />
+            Quem cuida de você
+          </p>
+        </Reveal>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
 
           {/* Photo */}
-          <div className="relative w-full max-w-[420px] mx-auto lg:mx-0 lg:pl-24">
+          <Reveal variant="left" className="relative w-full max-w-[420px] mx-auto lg:mx-0 lg:pl-24">
             {/* Gold accent border */}
 <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-gold/40 rounded-br-2xl" />
 
@@ -19,20 +28,15 @@ export default function Doctor() {
             {/* CRM badge */}
             <div className="absolute bottom-6 -right-6 z-20 bg-white/90 border border-gold/30 rounded-xl px-4 py-3 flex flex-col gap-0.5">
               <span className="text-gold text-xs font-medium tracking-widest uppercase">CRM-MG</span>
-              <span className="text-forest font-serif text-[1.375rem] font-medium">98375</span>
+              <span className="text-forest font-display text-[1.375rem] font-medium">98375</span>
             </div>
-          </div>
+          </Reveal>
 
           {/* Content */}
-          <div className="flex flex-col gap-6">
-            <div>
-              <p className="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-4">
-                Quem cuida de você
-              </p>
-              <h2 className="font-serif text-white text-4xl md:text-5xl font-medium leading-tight mb-2">
-                Dr. Bruno Galdino
-              </h2>
-            </div>
+          <Reveal variant="right" delay={120} className="flex flex-col gap-6">
+            <h2 className="font-display text-white text-4xl md:text-5xl lg:text-6xl font-light leading-[1.08]">
+              Dr. Bruno Galdino
+            </h2>
 
             <div className="w-12 h-px bg-gold" />
 
@@ -53,7 +57,7 @@ export default function Doctor() {
               praticantes de atividade física para que alcancem seus objetivos com saúde e segurança.
             </p>
 
-          </div>
+          </Reveal>
 
         </div>
       </div>

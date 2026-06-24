@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 const plans = [
   {
     name: 'Consulta Médica',
@@ -44,31 +46,40 @@ const plans = [
       'Acompanhamento evolutivo',
     ],
     highlight: false,
+    // Oculto temporariamente — defina como false (ou remova) para reexibir o card.
+    hidden: true,
   },
 ]
 
 export default function Pricing() {
+  const visiblePlans = plans.filter((plan) => !('hidden' in plan && plan.hidden))
+
   return (
-    <section id="valores" className="py-28 bg-sand">
+    <section id="valores" className="py-20 md:py-44">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="max-w-2xl mb-16">
-          <p className="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-4">
+        <Reveal className="max-w-2xl mb-16">
+          <p className="flex items-center gap-3 text-gold/80 text-xs font-medium tracking-[0.25em] uppercase mb-5">
+            <span className="h-px w-8 bg-gold/40" />
             Investimento
           </p>
-          <h2 className="font-serif text-forest text-4xl md:text-5xl font-medium leading-tight mb-6">
+          <h2 className="font-display text-white text-4xl md:text-5xl lg:text-6xl font-light leading-[1.08] mb-6">
             Transparência em cada etapa.
           </h2>
-          <p className="text-muted text-lg leading-relaxed">
+          <p className="text-white/55 text-lg leading-relaxed">
             Valores claros e sem surpresas. Porque cuidar da sua saúde deve ser
             uma decisão simples.
           </p>
-        </div>
+        </Reveal>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {plans.map((plan) => (
-            <div key={plan.name} className="flex flex-col">
+        <div
+          className={`grid grid-cols-1 gap-6 ${
+            visiblePlans.length >= 3 ? 'md:grid-cols-3' : 'md:grid-cols-2 md:max-w-3xl md:mx-auto'
+          }`}
+        >
+          {visiblePlans.map((plan, i) => (
+            <Reveal key={plan.name} variant="scale" delay={i * 120} className="flex flex-col">
               {plan.highlight ? (
                 <div className="flex items-center gap-2 bg-gold text-forest text-xs font-semibold tracking-wide px-4 py-2 rounded-2xl w-fit self-center -mb-4 z-10">
                   <span>★</span>
@@ -78,10 +89,10 @@ export default function Pricing() {
                 <div className="h-4" />
               )}
             <div
-              className={`relative rounded-2xl p-8 flex flex-col gap-6 border ${
+              className={`relative rounded-2xl p-8 flex flex-col gap-6 border transition-all duration-300 hover:-translate-y-2 ${
                 plan.highlight
-                  ? 'bg-forest border-forest text-white'
-                  : 'bg-white border-border'
+                  ? 'bg-forest border-gold/30 shadow-2xl shadow-black/40 hover:shadow-gold/10'
+                  : 'bg-white/[0.03] border-white/10 hover:bg-white/[0.05] hover:border-white/20'
               }`}
             >
               <div>
@@ -89,26 +100,14 @@ export default function Pricing() {
                   {plan.name}
                 </p>
                 <div className="flex items-end gap-2">
-                  <span
-                    className={`text-sm font-medium ${
-                      plan.highlight ? 'text-white/60' : 'text-muted'
-                    }`}
-                  >
+                  <span className="text-sm font-medium text-white/50">
                     R$
                   </span>
-                  <span
-                    className={`font-serif text-5xl font-medium ${
-                      plan.highlight ? 'text-white' : 'text-forest'
-                    }`}
-                  >
+                  <span className="font-display text-5xl font-light text-white">
                     {plan.price}
                   </span>
                 </div>
-                <p
-                  className={`text-sm mt-1 ${
-                    plan.highlight ? 'text-white/60' : 'text-muted'
-                  }`}
-                >
+                <p className="text-sm mt-1 text-white/55">
                   {plan.period}
                 </p>
                 {'installment' in plan && plan.installment && (
@@ -118,11 +117,7 @@ export default function Pricing() {
                 )}
               </div>
 
-              <p
-                className={`text-sm leading-relaxed ${
-                  plan.highlight ? 'text-white/70' : 'text-muted'
-                }`}
-              >
+              <p className="text-sm leading-relaxed text-white/60">
                 {plan.description}
               </p>
 
@@ -130,7 +125,7 @@ export default function Pricing() {
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm">
                     <span className="text-gold mt-0.5">✓</span>
-                    <span className={plan.highlight ? 'text-white/80' : 'text-ink'}>
+                    <span className="text-white/80">
                       {f}
                     </span>
                   </li>
@@ -138,11 +133,11 @@ export default function Pricing() {
               </ul>
 
             </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 
-        <p className="text-center text-muted text-sm mt-8">
+        <p className="text-center text-white/40 text-sm mt-8">
           Aceitamos as principais formas de pagamento. Entre em contato para mais informações.
         </p>
       </div>

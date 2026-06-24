@@ -1,25 +1,36 @@
+import Reveal from './Reveal'
+
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '5531983239199'
 
 export default function ContactSection() {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá.%20Quero%20agendar%20uma%20consulta%20com%20o%20Dr.%20Bruno.`
 
   return (
-    <section id="contato" className="py-28 bg-forest">
+    <section id="contato" className="py-20 md:py-44">
       <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-8">
-        <p className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
-          Atendimento
-        </p>
+        <Reveal>
+          <p className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
+            Atendimento
+          </p>
+        </Reveal>
 
-        <h2 className="font-serif text-white text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
-          Agende sua consulta.
-        </h2>
+        <Reveal delay={100}>
+          <h2 className="font-display text-white text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05]">
+            Agende sua consulta.
+          </h2>
+        </Reveal>
 
-        <p className="text-white/60 text-xl font-light">
-          Respondemos em poucos minutos.
-        </p>
+        <Reveal delay={180}>
+          <p className="text-white/60 text-xl font-light">
+            Respondemos em poucos minutos.
+          </p>
+        </Reveal>
 
-        <div className="w-16 h-px bg-gold/40" />
+        <Reveal delay={240}>
+          <div className="w-16 h-px bg-gold/40" />
+        </Reveal>
 
+        <Reveal delay={300} variant="scale">
         <a
           href={whatsappUrl}
           target="_blank"
@@ -31,9 +42,11 @@ export default function ContactSection() {
           </svg>
           Falar pelo WhatsApp
         </a>
+        </Reveal>
 
         {/* Instagram links */}
-        <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-8 border-t border-white/10 w-full justify-center">
+        <Reveal delay={360} className="mt-6 pt-8 border-t border-white/10 w-full">
+          <div className="flex flex-col items-start gap-4 w-fit mx-auto sm:flex-row sm:items-center">
           <a
             href="https://instagram.com/clinicaforzabh"
             target="_blank"
@@ -57,7 +70,8 @@ export default function ContactSection() {
             </svg>
             @drbrunogaldino
           </a>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

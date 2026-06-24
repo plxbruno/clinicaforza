@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Jost, Geist } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+// Matches infiniah.tech: Jost for display headings, Geist for body/UI.
+// Both are variable fonts — no explicit weights needed.
+const jost = Jost({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-jost",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
 });
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
   display: "swap",
-  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="pt-BR" className={`${jost.variable} ${geist.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">{children}</body>
     </html>
   );

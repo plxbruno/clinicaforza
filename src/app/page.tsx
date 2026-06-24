@@ -1,3 +1,5 @@
+import ScrollBackground from '@/components/ScrollBackground'
+import CursorGlow from '@/components/CursorGlow'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Services from '@/components/Services'
@@ -7,11 +9,13 @@ import Pricing from '@/components/Pricing'
 import ContactSection from '@/components/ContactSection'
 import MapSection from '@/components/MapSection'
 import Footer from '@/components/Footer'
-import WhatsAppButton from '@/components/WhatsAppButton'
 
 export default function Home() {
   return (
     <>
+      <ScrollBackground />
+      <div aria-hidden className="ambient-glow animate-drift" />
+      <CursorGlow />
       <Header />
       <main>
         <Hero />
@@ -23,7 +27,6 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
-      <WhatsAppButton />
     </>
   )
 }

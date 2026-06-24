@@ -1,33 +1,20 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
+import Reveal from './Reveal'
 
 const slides = [
-  {
-    gradient: 'from-forest to-forest-mid',
-    label: 'Recepção',
-    description: 'Ambiente acolhedor e exclusivo',
-  },
-  {
-    gradient: 'from-forest-mid to-[#2A4A7F]',
-    label: 'Consultório',
-    description: 'Equipamentos modernos para sua avaliação',
-  },
-  {
-    gradient: 'from-[#1E3A5F] to-forest',
-    label: 'Área de Avaliação',
-    description: 'Protocolos avançados de diagnóstico',
-  },
-  {
-    gradient: 'from-[#0D1B2A] to-[#2A4A7F]',
-    label: 'Espaço de Bem-estar',
-    description: 'Conforto e cuidado em cada detalhe',
-  },
-  {
-    gradient: 'from-forest-mid to-forest',
-    label: 'Sala de Acompanhamento',
-    description: 'Suporte contínuo em sua jornada',
-  },
+  '/clinica/1.jpeg',
+  '/clinica/2.jpeg',
+  '/clinica/3.jpeg',
+  '/clinica/4.jpeg',
+  '/clinica/5.jpeg',
+  '/clinica/6.jpeg',
+  '/clinica/7.jpeg',
+  '/clinica/8.jpeg',
+  '/clinica/9.jpeg',
+  '/clinica/10.jpeg',
 ]
 
 export default function PhotoCarousel() {
@@ -56,47 +43,38 @@ export default function PhotoCarousel() {
   }, [next])
 
   return (
-    <section className="py-28 bg-sand-dark overflow-hidden">
+    <section className="py-20 md:py-44 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="max-w-xl mb-14">
-          <p className="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-4">
+        <Reveal className="max-w-xl mb-14">
+          <p className="flex items-center gap-3 text-gold/80 text-xs font-medium tracking-[0.25em] uppercase mb-5">
+            <span className="h-px w-8 bg-gold/40" />
             Nossa clínica
           </p>
-          <h2 className="font-serif text-forest text-4xl md:text-5xl font-medium leading-tight">
+          <h2 className="font-display text-white text-4xl md:text-5xl lg:text-6xl font-light leading-[1.08]">
             Um espaço pensado para você.
           </h2>
-        </div>
+        </Reveal>
       </div>
 
       {/* Carousel */}
       <div className="relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="relative h-[460px] md:h-[560px] rounded-2xl overflow-hidden">
-            {slides.map((slide, i) => (
+            {slides.map((src, i) => (
               <div
                 key={i}
-                className={`absolute inset-0 bg-gradient-to-br ${slide.gradient} transition-opacity duration-500 ${
-                  i === current ? 'opacity-100' : 'opacity-0'
+                className={`absolute inset-0 transition-all duration-1000 ease-out ${
+                  i === current ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
                 }`}
               >
-                {/* Overlay pattern */}
-                <div className="absolute inset-0 opacity-5"
-                  style={{
-                    backgroundImage: `repeating-linear-gradient(
-                      45deg,
-                      #C9A55A,
-                      #C9A55A 1px,
-                      transparent 1px,
-                      transparent 40px
-                    )`
-                  }}
+                <Image
+                  src={src}
+                  alt={`Clínica Forza — ambiente ${i + 1}`}
+                  fill
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                  className="object-cover"
+                  priority={i === 0}
                 />
-
-
-                {/* Placeholder label */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/20 text-center">
-                  <p className="text-xs tracking-widest uppercase">Foto real em breve</p>
-                </div>
               </div>
             ))}
 
