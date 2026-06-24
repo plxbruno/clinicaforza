@@ -50,27 +50,8 @@ export default function Header() {
   return (
     <header className="fixed top-3 md:top-5 left-0 right-0 z-50 px-3 md:px-6">
       <div className="relative max-w-3xl mx-auto h-12">
-        {/* State A — centered logo, shown at the top while the hero CTA is visible */}
-        <div
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
-            state === 'hero'
-              ? 'opacity-100'
-              : 'opacity-0 pointer-events-none'
-          }`}
-        >
-          <a href="#hero" aria-label="Clínica Forza">
-            <Image
-              src="/logo.svg"
-              alt="Clínica Forza"
-              width={140}
-              height={56}
-              className="h-[34px] w-auto object-contain brightness-0 invert"
-              priority
-            />
-          </a>
-        </div>
-
-        {/* State B — pill navbar, appears once scrolled past the hero, hides at the contact section */}
+        {/* Pill navbar, appears once scrolled past the hero, hides at the contact section.
+            The top-of-page logo lives in <HeroLogo>, fixed behind the page, not here. */}
         <div
           className={`absolute inset-0 flex items-center justify-between gap-3 rounded-full border pl-5 pr-2 bg-forest/80 border-white/10 backdrop-blur-md shadow-lg shadow-black/20 transition-all duration-500 ${
             state === 'nav'

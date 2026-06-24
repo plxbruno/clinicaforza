@@ -1,5 +1,6 @@
 import ScrollBackground from '@/components/ScrollBackground'
 import CursorGlow from '@/components/CursorGlow'
+import HeroLogo from '@/components/HeroLogo'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Services from '@/components/Services'
@@ -16,6 +17,7 @@ export default function Home() {
       <ScrollBackground />
       <div aria-hidden className="ambient-glow animate-drift" />
       <CursorGlow />
+      <HeroLogo />
       <Header />
       <main>
         <Hero />
