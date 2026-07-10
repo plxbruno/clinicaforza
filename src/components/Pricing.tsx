@@ -17,9 +17,9 @@ const plans = [
   },
   {
     name: 'Plano de Emagrecimento',
-    price: '1.890',
+    price: '1.790',
     period: 'por mês no plano trimestral',
-    installment: '6x de R$ 945,00 sem juros',
+    installment: '6x de R$ 895,00 sem juros',
     description:
       'Tratamento completo com medicação incluída após criteriosa avaliação clínica.',
     features: [
@@ -58,8 +58,8 @@ export default function Pricing() {
     <section id="valores" className="py-20 md:py-44">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <Reveal className="max-w-2xl mb-16">
-          <p className="flex items-center gap-3 text-gold/80 text-xs font-medium tracking-[0.25em] uppercase mb-5">
+        <Reveal className="max-w-2xl mb-16 mx-auto text-center">
+          <p className="flex items-center justify-center gap-3 text-gold/80 text-xs font-medium tracking-[0.25em] uppercase mb-5">
             <span className="h-px w-8 bg-gold/40" />
             Investimento
           </p>
@@ -137,9 +137,49 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p className="text-center text-white/40 text-sm mt-8">
+        <p className="text-center text-white/40 text-sm mt-4">
           Aceitamos as principais formas de pagamento. Entre em contato para mais informações.
         </p>
+
+        {/* Comparativo */}
+        <Reveal variant="scale" className="mt-6 md:mt-10">
+          <div className="max-w-3xl mx-auto rounded-2xl border border-white/10 bg-white/[0.03] p-8 md:p-10">
+            <p className="text-center text-white/55 text-sm mb-8">
+              Veja quanto custaria montar o mesmo tratamento fora do plano:
+            </p>
+
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-white/70">Consulta médica</span>
+                <span className="text-white/70">R$ 450</span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-white/70">Consulta nutricional</span>
+                <span className="text-white/70">R$ 350</span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-white/70">Mounjaro 7,5 mg</span>
+                <span className="text-white/70">R$ 2.500</span>
+              </div>
+
+              <div className="h-px bg-white/10 my-2" />
+
+              <div className="flex items-center justify-between">
+                <span className="text-white/80 font-medium">Total avulso</span>
+                <span className="text-white/80 font-medium">R$ 3.300</span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-gold font-medium">Na Clínica Forza</span>
+                <span className="text-gold font-medium">R$ 1.790</span>
+              </div>
+            </div>
+
+            <p className="text-center text-white/40 text-xs mt-8">
+              Economia de mais de R$ 1.500 por mês em relação ao tratamento avulso.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

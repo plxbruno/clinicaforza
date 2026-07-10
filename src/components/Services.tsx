@@ -38,13 +38,15 @@ export default function Services() {
     <section id="servicos" className="py-20 md:py-44">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <Reveal className="max-w-2xl mb-12">
-          <p className="flex items-center gap-3 text-gold/80 text-xs font-medium tracking-[0.25em] uppercase mb-5">
+        <Reveal className="max-w-2xl mb-12 mx-auto text-center">
+          <p className="flex items-center justify-center gap-3 text-gold/80 text-xs font-medium tracking-[0.25em] uppercase mb-5">
             <span className="h-px w-8 bg-gold/40" />
             O que fazemos
           </p>
           <h2 className="font-display text-white text-4xl md:text-5xl lg:text-6xl font-light leading-[1.08]">
-            Para cada objetivo, uma solução.
+            Para cada objetivo,
+            <br />
+            uma solução.
           </h2>
         </Reveal>
 

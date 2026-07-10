@@ -45,8 +45,8 @@ export default function PhotoCarousel() {
   return (
     <section className="py-20 md:py-44 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <Reveal className="max-w-xl mb-14">
-          <p className="flex items-center gap-3 text-gold/80 text-xs font-medium tracking-[0.25em] uppercase mb-5">
+        <Reveal className="max-w-xl mb-14 mx-auto text-center">
+          <p className="flex items-center justify-center gap-3 text-gold/80 text-xs font-medium tracking-[0.25em] uppercase mb-5">
             <span className="h-px w-8 bg-gold/40" />
             Nossa clínica
           </p>
