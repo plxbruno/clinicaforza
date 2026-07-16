@@ -18,6 +18,13 @@ export default function Doctor() {
             {/* Gold accent border */}
 <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-gold/40 rounded-br-2xl" />
 
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/doctor.png"
+              alt="Dr. Bruno Galdino"
+              className="w-full h-auto object-contain rounded-2xl relative z-10"
+            />
+
             {/* CRM badge */}
             <div className="absolute bottom-6 -right-6 z-20 bg-white/90 border border-gold/30 rounded-xl px-4 py-3 flex flex-col gap-0.5">
               <span className="text-gold text-xs font-medium tracking-widest uppercase">CRM-MG</span>

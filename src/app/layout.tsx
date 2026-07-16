@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Jost, Geist } from "next/font/google";
 import "./globals.css";
 
@@ -20,6 +20,13 @@ export const metadata: Metadata = {
   title: "Clínica Forza - Dr. Bruno Galdino",
   description:
     "Especializada em emagrecimento, estilo de vida, esporte e performance. Agende sua consulta com o Dr. Bruno Galdino, médico formado pela UFMG.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
