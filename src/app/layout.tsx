@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Jost, Geist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Matches infiniah.tech: Jost for display headings, Geist for body/UI.
@@ -36,7 +37,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${jost.variable} ${geist.variable}`}>
-      <body className="min-h-screen flex flex-col antialiased">{children}</body>
+      <body className="min-h-screen flex flex-col antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
