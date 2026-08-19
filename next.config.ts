@@ -1,14 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'i.pinimg.com',
-      },
-    ],
-  },
   experimental: {
     // Teto de memoria do Turbopack (em bytes). Sem isso o Turbopack cresce
     // sem limite no `next dev` e satura a RAM, travando a maquina. 2 GB e

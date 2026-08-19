@@ -1,36 +1,32 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import Logo from './Logo'
+import { testimonials } from '@/lib/testimonials'
+import WhatsAppLink from './WhatsAppLink'
 
-type NavState = 'hero' | 'nav' | 'hidden'
-
-const WHATSAPP =
-  'https://wa.me/5531983239199?text=Olá.%20Quero%20agendar%20uma%20consulta%20com%20o%20Dr.%20Bruno.'
+// Depoimentos so entra quando ha depoimentos cadastrados — senao o link
+// apontaria para uma ancora que nao existe no HTML.
+const LINKS = [
+  { href: '#plano', label: 'Plano' },
+  { href: '#tratamentos', label: 'Tratamentos' },
+  { href: '#sobre', label: 'Dr. Bruno' },
+  ...(testimonials.length > 0
+    ? [{ href: '#depoimentos', label: 'Depoimentos' }]
+    : []),
+  { href: '#localizacao', label: 'Localização' },
+]
 
 export default function Header() {
-  const [state, setState] = useState<NavState>('hero')
+  // `solid` = ja saiu do hero, o header vira branco com sombra.
+  const [solid, setSolid] = useState(false)
 
   useEffect(() => {
     let raf = 0
 
     const compute = () => {
       raf = 0
-      const winH = window.innerHeight
-      const cta = document.getElementById('hero-cta')
-      const contact = document.getElementById('contato')
-
-      // At the top while the hero's "Agendar consulta" button is still on screen.
-      const atTop = cta
-        ? cta.getBoundingClientRect().bottom > 8
-        : window.scrollY < winH * 0.5
-
-      // Reached the "Atendimento" section once its top crosses the middle of the viewport.
-      const inContact = contact
-        ? contact.getBoundingClientRect().top < winH * 0.5
-        : false
-
-      setState(atTop ? 'hero' : inContact ? 'hidden' : 'nav')
+      setSolid(window.scrollY > window.innerHeight * 0.75)
     }
 
     const onScroll = () => {
@@ -48,37 +44,52 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="fixed top-3 md:top-5 left-0 right-0 z-50 px-3 md:px-6">
-      <div className="relative max-w-3xl mx-auto h-12">
-        {/* Pill navbar, appears once scrolled past the hero, hides at the contact section.
-            The top-of-page logo lives in <HeroLogo>, fixed behind the page, not here. */}
-        <div
-          className={`absolute inset-0 flex items-center justify-between gap-3 rounded-full border pl-5 pr-2 bg-forest/80 border-white/10 backdrop-blur-md shadow-lg shadow-black/20 transition-all duration-500 ${
-            state === 'nav'
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 pointer-events-none -translate-y-2'
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        solid
+          ? // No celular a navbar sai de cena depois do hero — o botao flutuante
+            // do WhatsApp assume o papel de CTA e a tela fica livre para o conteudo.
+            'bg-paper/95 backdrop-blur-md border-b border-line shadow-sm max-md:pointer-events-none max-md:-translate-y-full max-md:opacity-0'
+          : 'bg-transparent border-b border-transparent translate-y-0 opacity-100'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between gap-6">
+        <a
+          href="#top"
+          aria-label="Clínica Forza — início"
+          className={`-m-2 p-2 transition-colors duration-300 ${
+            solid ? 'text-navy' : 'text-white'
           }`}
         >
-          <a href="#hero" className="flex items-center gap-3" aria-label="Clínica Forza">
-            <Image
-              src="/logo.svg"
-              alt="Clínica Forza"
-              width={116}
-              height={46}
-              className="h-[30px] w-auto object-contain brightness-0 invert"
-            />
-          </a>
+          <Logo className="h-6 md:h-7 w-auto" />
+        </a>
 
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 bg-gold text-forest text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gold-light transition-colors duration-200"
-          >
-            Agendar
-            <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-          </a>
-        </div>
+        <nav className="hidden md:flex items-center gap-8">
+          {LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className={`text-sm transition-colors duration-200 ${
+                solid
+                  ? 'text-ink-soft hover:text-navy'
+                  : 'text-white/75 hover:text-white'
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <WhatsAppLink
+          source="header"
+          className={`shrink-0 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200 hover:scale-[1.03] ${
+            solid
+              ? 'bg-navy text-white hover:bg-gold hover:text-navy'
+              : 'bg-gold text-navy hover:bg-white'
+          }`}
+        >
+          Agendar
+        </WhatsAppLink>
       </div>
     </header>
   )

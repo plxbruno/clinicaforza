@@ -1,77 +1,51 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-forest: #0D1B2A;
-  --color-forest-mid: #1E3A5F;
+  /* Marca — navy profundo + dourado, herdados da identidade Forza */
+  --color-navy: #0D1B2A;
+  --color-navy-soft: #1E3A5F;
+
+  /* Dourado de preenchimento. Contraste ~2:1 no branco — NUNCA usar em texto. */
   --color-gold: #C9A55A;
-  --color-gold-light: #E8D5A3;
-  /* Dark, near-black base — the canvas everything sits on */
-  --color-night: #080C11;
-  --color-night-2: #0B1219;
-  --color-sand: #FAFAF8;
-  --color-sand-dark: #F0EDE8;
-  --color-ink: #1C1C1C;
-  --color-muted: #6B7280;
-  --color-border: #E5E0D8;
+  /* Dourado de texto sobre fundo claro (>= 4.5:1) */
+  --color-gold-ink: #8A6A28;
+
+  /* Superficies */
+  --color-paper: #FFFFFF;
+  --color-paper-2: #F7F6F3;
+
+  /* Texto */
+  --color-ink: #12151A;
+  --color-ink-soft: #4A5560;
+
+  --color-line: #E4E2DD;
+
   --font-display: var(--font-jost);
   --font-sans: var(--font-geist);
 }
 
 html {
   scroll-behavior: smooth;
-  /* Base shade — JS interpolates this color as you scroll (see ScrollBackground) */
-  background-color: var(--color-night);
+  background-color: var(--color-paper);
+  /* Trava qualquer sangramento lateral (os transforms de .reveal-* chegam a
+     ultrapassar a viewport em telas estreitas). `clip` em vez de `hidden`:
+     nao cria contexto de rolagem, entao position:fixed e as ancoras continuam
+     funcionando. */
+  overflow-x: clip;
+  /* Compensa o header fixo quando o usuario navega pelas ancoras */
+  scroll-padding-top: 5.5rem;
 }
 
 body {
-  /* Transparent so the scroll-driven <html> background shows through every section */
-  background-color: transparent;
-  color: #E9ECEF;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 .font-display {
   font-family: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: -0.03em;
-}
-
-/* Ambient page glow — a soft, slowly drifting wash that spans the whole page
-   (no per-section boundary), behind all content. */
-.ambient-glow {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.08;
-  background:
-    radial-gradient(60% 50% at 18% 10%, #1E3A5F 0%, transparent 60%),
-    radial-gradient(55% 45% at 82% 90%, #C9A55A 0%, transparent 60%);
-}
-
-/* Cursor spotlight — a soft glow that follows the mouse on desktop (see CursorGlow).
-   Sits above the scroll-driven <html> shade but behind all page content. */
-.cursor-glow {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  background: radial-gradient(
-    560px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(201, 165, 90, 0.1),
-    rgba(30, 58, 95, 0.06) 35%,
-    transparent 65%
-  );
-}
-
-/* Remove dark mode overrides */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #080C11;
-    --foreground: #E9ECEF;
-  }
+  letter-spacing: -0.02em;
 }
 
 /* ===========================================================
@@ -107,14 +81,15 @@ body {
   }
 }
 
-/* slow, organic drift for the hero background glow */
-@keyframes drift {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
+/* Ken Burns continuo nas fotos do hero. Roda em todas as fotos o tempo todo
+   (alternate infinite) para que nenhuma "pule" de escala ao entrar ou sair
+   do crossfade. */
+@keyframes kenBurns {
+  from {
+    transform: scale(1);
   }
-  50% {
-    transform: translate(-3%, 3%) scale(1.08);
+  to {
+    transform: scale(1.09);
   }
 }
 
@@ -135,8 +110,8 @@ body {
   animation: growLine 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.animate-drift {
-  animation: drift 18s ease-in-out infinite;
+.animate-ken-burns {
+  animation: kenBurns 20s ease-in-out infinite alternate;
 }
 
 /* Scroll-triggered reveal (toggled by the <Reveal> component) */
@@ -150,11 +125,21 @@ body {
 }
 
 .reveal-left {
-  transform: translateX(-40px);
+  transform: translateX(-24px);
 }
 
 .reveal-right {
-  transform: translateX(40px);
+  transform: translateX(24px);
+}
+
+@media (min-width: 768px) {
+  .reveal-left {
+    transform: translateX(-40px);
+  }
+
+  .reveal-right {
+    transform: translateX(40px);
+  }
 }
 
 .reveal-scale {
@@ -184,9 +169,14 @@ body {
   .animate-fade-up,
   .animate-fade-in,
   .animate-grow-line,
-  .animate-drift {
+  .animate-ken-burns {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
+  }
+
+  /* Slideshow do hero: sem crossfade, a primeira foto fica parada */
+  .hero-slide {
+    transition: none !important;
   }
 }

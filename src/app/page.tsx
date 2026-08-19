@@ -1,34 +1,29 @@
-import ScrollBackground from '@/components/ScrollBackground'
-import CursorGlow from '@/components/CursorGlow'
-import HeroLogo from '@/components/HeroLogo'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
+import Plan from '@/components/Plan'
 import Services from '@/components/Services'
-import PhotoCarousel from '@/components/PhotoCarousel'
 import Doctor from '@/components/Doctor'
-import Pricing from '@/components/Pricing'
-import ContactSection from '@/components/ContactSection'
+import Testimonials from '@/components/Testimonials'
 import MapSection from '@/components/MapSection'
+import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
+import WhatsAppButton from '@/components/WhatsAppButton'
 
 export default function Home() {
   return (
     <>
-      <ScrollBackground />
-      <div aria-hidden className="ambient-glow animate-drift" />
-      <CursorGlow />
-      <HeroLogo />
       <Header />
-      <main>
+      <main id="top">
         <Hero />
-        <MapSection />
+        <Plan />
         <Services />
-        <PhotoCarousel />
         <Doctor />
-        <Pricing />
+        <Testimonials />
+        <MapSection />
         <ContactSection />
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   )
 }

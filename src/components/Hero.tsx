@@ -1,62 +1,50 @@
+import HeroSlideshow from './HeroSlideshow'
+import WhatsAppLink from './WhatsAppLink'
+
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-8">
-        {/* Eyebrow */}
+    <section className="relative min-h-[100svh] flex items-center overflow-hidden">
+      <HeroSlideshow />
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-28 pb-28 md:pt-40 md:pb-32 text-center">
         <p
-          className="text-gold text-sm font-medium tracking-[0.2em] uppercase animate-fade-up"
-          style={{ animationDelay: '0.1s' }}
+          className="text-gold text-xs font-medium tracking-[0.25em] uppercase mb-6 animate-fade-in"
+          style={{ animationDelay: '120ms' }}
         >
-          Emagrecimento · Performance
-          <span className="hidden md:inline"> · </span>
-          <span className="block md:inline">Estilo de Vida</span>
+          Clínica Forza · Savassi
         </p>
 
-        {/* Main headline */}
         <h1
-          className="font-display text-white text-5xl md:text-6xl lg:text-7xl leading-[1.05] font-light max-w-3xl animate-fade-up"
-          style={{ animationDelay: '0.25s' }}
+          className="font-display text-white text-[2.05rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl font-medium max-w-4xl mx-auto text-balance animate-fade-up"
+          style={{ animationDelay: '200ms' }}
         >
-          Sua melhor versão está mais perto{' '}
-          <em className="text-gold not-italic">do que você imagina.</em>
+          Emagrecimento em Belo Horizonte,{' '}
+          <span className="text-gold">com acompanhamento médico.</span>
         </h1>
 
-        {/* Divider */}
-        <div
-          className="w-16 h-px bg-gold animate-grow-line"
-          style={{ animationDelay: '0.5s' }}
-        />
-
-        {/* Subtitle */}
         <p
-          className="text-white/70 text-lg md:text-xl font-light max-w-xl leading-relaxed animate-fade-up"
-          style={{ animationDelay: '0.65s' }}
+          className="mt-6 max-w-xl mx-auto text-white/75 text-base sm:text-lg leading-relaxed text-pretty animate-fade-up"
+          style={{ animationDelay: '340ms' }}
         >
-          Resultados reais. Sem atalhos, sem promessas vazias.
+          Tratamento com tirzepatida inclusa e monitoramento semanal. Resultados
+          reais, sem atalhos e sem promessas vazias.
         </p>
 
-        {/* CTA */}
         <div
-          className="flex items-center justify-center mt-2 animate-fade-up"
-          style={{ animationDelay: '0.8s' }}
+          className="mt-9 hidden sm:flex justify-center animate-fade-up"
+          style={{ animationDelay: '460ms' }}
         >
-          <a
-            id="hero-cta"
-            href="https://wa.me/5531983239199?text=Olá.%20Quero%20agendar%20uma%20consulta%20com%20o%20Dr.%20Bruno."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 bg-gold text-forest font-semibold text-base px-7 py-3.5 rounded-full hover:bg-gold-light transition-colors duration-200"
+          <WhatsAppLink
+            source="hero"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-4 text-navy text-sm font-semibold transition-all duration-200 hover:bg-white hover:scale-[1.02]"
           >
             Agendar consulta
-            <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-          </a>
+            <span className="transition-transform duration-200 group-hover:translate-x-1">
+              →
+            </span>
+          </WhatsAppLink>
         </div>
-
       </div>
-
     </section>
   )
 }
