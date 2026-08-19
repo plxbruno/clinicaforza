@@ -14,6 +14,7 @@ const LINKS = [
   ...(testimonials.length > 0
     ? [{ href: '#depoimentos', label: 'Depoimentos' }]
     : []),
+  { href: '#duvidas', label: 'Dúvidas' },
   { href: '#localizacao', label: 'Localização' },
 ]
 

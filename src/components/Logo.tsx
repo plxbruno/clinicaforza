@@ -4,6 +4,7 @@ export default function Logo({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="96 390 1086 375"
       className={className}
+      role="img"
       aria-label="Clínica Forza"
     >
       <path

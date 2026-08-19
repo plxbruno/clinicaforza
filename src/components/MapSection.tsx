@@ -5,13 +5,15 @@ export default function MapSection() {
   const { address } = clinic
 
   return (
-    <section id="localizacao" className="bg-paper-2 py-16 md:py-24">
+    <section id="localizacao" aria-labelledby="localizacao-titulo" className="bg-paper-2 py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center text-center lg:text-left">
         <Reveal variant="left">
           <p className="text-gold-ink text-xs font-semibold tracking-[0.25em] uppercase mb-5">
             Onde estamos
           </p>
-          <h2 className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance">
+          <h2
+            id="localizacao-titulo"
+            className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance">
             No coração da Savassi.
           </h2>
           <address className="not-italic text-ink-soft text-base sm:text-lg leading-relaxed mt-6">

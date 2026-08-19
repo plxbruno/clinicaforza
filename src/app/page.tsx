@@ -4,6 +4,7 @@ import Plan from '@/components/Plan'
 import Services from '@/components/Services'
 import Doctor from '@/components/Doctor'
 import Testimonials from '@/components/Testimonials'
+import Faq from '@/components/Faq'
 import MapSection from '@/components/MapSection'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
@@ -19,6 +20,7 @@ export default function Home() {
         <Services />
         <Doctor />
         <Testimonials />
+        <Faq />
         <MapSection />
         <ContactSection />
       </main>

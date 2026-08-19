@@ -3,6 +3,7 @@ import { Jost, Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { brl, clinic, plan } from '@/lib/clinic'
+import { homeJsonLd } from '@/lib/schema'
 import './globals.css'
 
 // Jost para display, Geist para corpo. Ambas variaveis — sem pesos explicitos.
@@ -20,13 +21,15 @@ const geist = Geist({
 
 // O titulo da home e absoluto de proposito: um sufixo de marca empurraria
 // o "R$ 599" para fora do corte de ~60 caracteres no resultado de busca.
-// Vindo de ee7155d. Atencao: maximumScale/userScalable bloqueiam o pinch-zoom
-// e reprovam o criterio 1.4.4 da WCAG (e o audit de acessibilidade do Lighthouse).
+//
+// maximumScale/userScalable sairam daqui (estavam desde ee7155d): bloqueavam
+// o pinch-zoom, o que reprova o criterio 1.4.4 da WCAG e derruba o audit de
+// acessibilidade do Lighthouse. Nao readicionar — zoom acidental no mobile
+// incomoda menos do que impedir alguem de ler a pagina.
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  themeColor: '#0D1B2A',
 }
 
 export const metadata: Metadata = {
@@ -50,6 +53,12 @@ export const metadata: Metadata = {
   applicationName: clinic.name,
   authors: [{ name: clinic.doctor.name }],
   alternates: { canonical: '/' },
+  // Verificacao de propriedade do Google Search Console. Nao e segredo: a
+  // meta tag e publica por design, e so serve para provar a posse do dominio.
+  // Nao remover — se sair, a propriedade no Search Console desverifica.
+  verification: {
+    google: 'dm9R1pbV27hRU9YaCXxbUSX8HVsPgenQjZSh1rV_5o8',
+  },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
@@ -76,60 +85,6 @@ export const metadata: Metadata = {
   },
 }
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'MedicalClinic',
-  '@id': `${clinic.site}/#clinica`,
-  name: clinic.name,
-  url: clinic.site,
-  description: `Clínica médica especializada em emagrecimento, performance e longevidade em ${clinic.address.city}.`,
-  image: `${clinic.site}/opengraph-image`,
-  priceRange: `R$ ${brl(plan.firstMonth)} - R$ ${brl(plan.nextMonths)}`,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: `${clinic.address.street}, ${clinic.address.unit}`,
-    addressLocality: clinic.address.city,
-    addressRegion: clinic.address.state,
-    addressCountry: clinic.address.country,
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: clinic.geo.lat,
-    longitude: clinic.geo.lng,
-  },
-  hasMap: clinic.mapsUrl,
-  areaServed: {
-    '@type': 'City',
-    name: clinic.address.city,
-  },
-  medicalSpecialty: ['Nutrition', 'PrimaryCare'],
-  sameAs: [
-    `https://instagram.com/${clinic.instagram.clinic}`,
-    `https://instagram.com/${clinic.instagram.doctor}`,
-  ],
-  employee: {
-    '@type': 'Physician',
-    name: clinic.doctor.name,
-    identifier: clinic.doctor.crm,
-    ...(clinic.doctor.photo && { image: `${clinic.site}${clinic.doctor.photo}` }),
-    medicalSpecialty: ['Nutrition', 'PrimaryCare'],
-    areaServed: { '@type': 'City', name: clinic.address.city },
-  },
-  makesOffer: {
-    '@type': 'Offer',
-    name: `${plan.name} — 1º mês`,
-    description: `Acompanhamento médico de ${plan.months} meses com tirzepatida inclusa, bioimpedância e monitoramento semanal. R$ ${brl(plan.firstMonth)} no primeiro mês e 2× R$ ${brl(plan.nextMonths)}.`,
-    price: plan.firstMonth,
-    priceCurrency: 'BRL',
-    availability: 'https://schema.org/InStock',
-    areaServed: { '@type': 'City', name: clinic.address.city },
-    itemOffered: {
-      '@type': 'MedicalTherapy',
-      name: plan.name,
-    },
-  },
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -141,8 +96,8 @@ export default function RootLayout({
         {children}
         <script
           type="application/ld+json"
-          // Dados estaticos vindos de src/lib/clinic.ts — nao ha entrada de usuario aqui.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          // Dados estaticos vindos de src/lib/schema.ts — nao ha entrada de usuario aqui.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
         />
         <Analytics />
         <SpeedInsights />

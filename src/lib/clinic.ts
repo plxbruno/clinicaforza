@@ -7,7 +7,7 @@
 export const clinic = {
   name: 'Clínica Forza',
   legalName: 'Clínica Forza',
-  site: 'https://clinicaforzabh.com.br',
+  site: 'https://www.clinicaforzabh.com.br',
 
   doctor: {
     name: 'Dr. Bruno Galdino',
@@ -23,6 +23,20 @@ export const clinic = {
   whatsapp: '5531983239199',
   whatsappMessage: 'Olá. Quero agendar uma consulta com o Dr. Bruno.',
 
+  /**
+   * Mesmo numero do WhatsApp, nos dois formatos que o site precisa:
+   * `e164` vai no `telephone` do JSON-LD, `display` e o que o humano le.
+   * Precisa bater caractere por caractere com o Google Business — a
+   * consistencia de NAP e o que sustenta o pacote local.
+   *
+   * Nao usar em href tel:. O atendimento e so por WhatsApp; o numero
+   * aparece na tela como dado de contato, nao como convite para ligar.
+   */
+  phone: {
+    e164: '+5531983239199',
+    display: '(31) 98323-9199',
+  },
+
   instagram: {
     clinic: 'clinicaforzabh',
     doctor: 'drbrunogaldino',
@@ -34,6 +48,7 @@ export const clinic = {
     district: 'Savassi',
     city: 'Belo Horizonte',
     state: 'MG',
+    postalCode: '30130-135',
     country: 'BR',
   },
 
@@ -45,6 +60,27 @@ export const clinic = {
   // por cima, pela propria pagina, em <MapSection />.
   mapsEmbedUrl:
     'https://www.google.com/maps?q=-19.9319633,-43.9312381&z=17&hl=pt-BR&output=embed',
+
+  /**
+   * Horario de funcionamento. `days` usa a abreviacao de schema.org
+   * (openingHoursSpecification); `label` e a versao que vai para a tela.
+   * Alterar aqui exige alterar tambem no Google Business, senao o Google
+   * ve dois horarios diferentes para o mesmo negocio.
+   */
+  hours: [
+    {
+      days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '19:00',
+      label: 'Segunda a sexta, 8h às 19h',
+    },
+    {
+      days: ['Saturday'],
+      opens: '08:00',
+      closes: '12:00',
+      label: 'Sábado, 8h às 12h',
+    },
+  ],
 } as const
 
 /** Endereco em uma linha, usado no rodape e no JSON-LD. */
@@ -63,8 +99,15 @@ export const plan = {
   name: 'Plano de Emagrecimento com Tirzepatida',
   badge: 'Promoção por tempo limitado',
   firstMonth: 599,
-  nextMonths: 1490,
   months: 3,
+  /**
+   * ATENCAO: nextMonths e total nao sao renderizados em lugar nenhum, e
+   * tambem sairam do JSON-LD de proposito. Dado estruturado precisa refletir
+   * o que esta na tela, e a unica cifra visivel e o R$ 599 do primeiro mes.
+   * Se um dia o custo cheio do plano for exibido no card do <Plan />, estes
+   * numeros voltam para o schema junto — nunca so no schema.
+   */
+  nextMonths: 1490,
   /** 599 + 1490 + 1490 */
   total: 3579,
   features: [

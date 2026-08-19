@@ -6,7 +6,7 @@ export default function Doctor() {
   const { photo } = clinic.doctor
 
   return (
-    <section id="sobre" className="bg-paper-2 py-16 md:py-24">
+    <section id="sobre" aria-labelledby="sobre-titulo" className="bg-paper-2 py-16 md:py-24">
       {/* No celular a ordem e a do DOM: rotulo, foto, nome e texto.
           No desktop o grid recoloca a foto na coluna da esquerda, ocupando as
           duas linhas — assim nao ha texto duplicado para leitor de tela. */}
@@ -44,7 +44,9 @@ export default function Doctor() {
 
         <div className={photo ? 'lg:col-start-2 lg:row-start-2 lg:self-start' : ''}>
           <Reveal variant={photo ? 'right' : 'up'}>
-            <h2 className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance">
+            <h2
+            id="sobre-titulo"
+            className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance">
               {clinic.doctor.name}
             </h2>
 

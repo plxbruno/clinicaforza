@@ -4,13 +4,15 @@ import { brl, plan } from '@/lib/clinic'
 
 export default function Plan() {
   return (
-    <section id="plano" className="bg-paper-2 py-16 md:py-14">
+    <section id="plano" aria-labelledby="plano-titulo" className="bg-paper-2 py-16 md:py-14">
       <div className="max-w-3xl mx-auto px-6">
         <Reveal className="text-center mb-6">
           <p className="text-gold-ink text-xs font-semibold tracking-[0.25em] uppercase mb-5">
             {plan.badge}
           </p>
-          <h2 className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance mb-4">
+          <h2
+            id="plano-titulo"
+            className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance mb-4">
             Comece seu tratamento por{'\u00A0'}R${'\u00A0'}{brl(plan.firstMonth)}.
           </h2>
           <p className="text-ink-soft text-base sm:text-lg leading-relaxed text-pretty">

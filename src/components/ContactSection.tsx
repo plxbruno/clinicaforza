@@ -4,13 +4,15 @@ import { clinic } from '@/lib/clinic'
 
 export default function ContactSection() {
   return (
-    <section id="contato" className="py-16 md:py-24">
+    <section id="contato" aria-labelledby="contato-titulo" className="py-16 md:py-24">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <Reveal>
           <p className="text-gold-ink text-xs font-semibold tracking-[0.25em] uppercase mb-5">
             Atendimento
           </p>
-          <h2 className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance">
+          <h2
+            id="contato-titulo"
+            className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance">
             Agende sua consulta.
           </h2>
           <p className="text-ink-soft text-base sm:text-lg leading-relaxed text-pretty mt-5">
@@ -27,6 +29,14 @@ export default function ContactSection() {
             </svg>
             Falar no WhatsApp
           </WhatsAppLink>
+
+          {/* Horario em texto. O canal de contato e so o WhatsApp — nao ha
+              convite para ligar em lugar nenhum da pagina. */}
+          <div className="mt-8 text-ink-soft text-sm leading-relaxed">
+            {clinic.hours.map((h) => (
+              <p key={h.label}>{h.label}</p>
+            ))}
+          </div>
 
           <div className="flex items-center justify-center gap-6 mt-10 pt-8 border-t border-line">
             <a

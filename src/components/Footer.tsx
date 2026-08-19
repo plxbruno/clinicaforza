@@ -1,4 +1,5 @@
 import Logo from './Logo'
+import WhatsAppLink from './WhatsAppLink'
 import { addressLine, clinic } from '@/lib/clinic'
 
 export default function Footer() {
@@ -12,8 +13,28 @@ export default function Footer() {
           </p>
         </div>
 
+        {/*
+          NAP completo (nome, endereco, telefone) mais horario. O Google cruza
+          esses quatro dados com o Google Business — precisam ser identicos
+          nos dois lugares, ou ele ve dois negocios parecidos em vez de um.
+
+          O numero fica visivel por isso, mas o link abre o WhatsApp, nao o
+          discador: atendimento por telefone nao existe aqui.
+        */}
         <address className="not-italic text-sm leading-relaxed text-balance md:text-right">
           {addressLine}
+          <br />
+          <WhatsAppLink
+            source="rodape"
+            className="inline-block -m-1 p-1 transition-colors duration-200 hover:text-white"
+          >
+            {clinic.phone.display} · WhatsApp
+          </WhatsAppLink>
+          {clinic.hours.map((h) => (
+            <span key={h.label} className="block text-white/50">
+              {h.label}
+            </span>
+          ))}
         </address>
       </div>
 

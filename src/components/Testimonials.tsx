@@ -7,13 +7,15 @@ export default function Testimonials() {
   if (testimonials.length === 0) return null
 
   return (
-    <section id="depoimentos" className="py-16 md:py-24">
+    <section id="depoimentos" aria-labelledby="depoimentos-titulo" className="py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <Reveal className="max-w-2xl mx-auto text-center mb-12">
           <p className="text-gold-ink text-xs font-semibold tracking-[0.25em] uppercase mb-5">
             Depoimentos
           </p>
-          <h2 className="font-display text-navy text-4xl md:text-5xl font-semibold leading-[1.1]">
+          <h2
+            id="depoimentos-titulo"
+            className="font-display text-navy text-4xl md:text-5xl font-semibold leading-[1.1]">
             Quem já passou por aqui.
           </h2>
         </Reveal>

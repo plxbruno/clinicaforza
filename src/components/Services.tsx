@@ -42,13 +42,15 @@ const services: Service[] = [
 
 export default function Services() {
   return (
-    <section id="tratamentos" className="py-16 md:py-24">
+    <section id="tratamentos" aria-labelledby="tratamentos-titulo" className="py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <Reveal className="max-w-2xl mx-auto text-center mb-12">
           <p className="text-gold-ink text-xs font-semibold tracking-[0.25em] uppercase mb-5">
             O que fazemos
           </p>
-          <h2 className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance">
+          <h2
+            id="tratamentos-titulo"
+            className="font-display text-navy text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance">
             Para cada objetivo, uma solução.
           </h2>
         </Reveal>
