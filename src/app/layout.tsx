@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Jost, Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -20,6 +20,15 @@ const geist = Geist({
 
 // O titulo da home e absoluto de proposito: um sufixo de marca empurraria
 // o "R$ 599" para fora do corte de ~60 caracteres no resultado de busca.
+// Vindo de ee7155d. Atencao: maximumScale/userScalable bloqueiam o pinch-zoom
+// e reprovam o criterio 1.4.4 da WCAG (e o audit de acessibilidade do Lighthouse).
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL(clinic.site),
   title: {
