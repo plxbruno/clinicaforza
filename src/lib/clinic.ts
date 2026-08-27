@@ -92,8 +92,26 @@ export const addressLine = [
 ].join(' · ')
 
 /**
- * A oferta central da pagina. O primeiro mes e o numero que domina o site
- * e que precisa aparecer no titulo, na description e no JSON-LD.
+ * O titulo da home. Vive aqui, e nao inline no layout, porque quatro lugares
+ * precisam dizer exatamente a mesma coisa: o <title>, o og:title, o
+ * twitter:title e o `name` do MedicalWebPage no JSON-LD. Divergencia entre
+ * eles e sinal ruim para a busca.
+ *
+ * Tem 60 caracteres — exatamente o corte do resultado de busca do Google.
+ * Nao alongar: qualquer palavra a mais some com um pedaco de "Belo Horizonte".
+ * E por isso tambem que o titulo da home e `absolute`, sem o sufixo de marca
+ * do `template`.
+ */
+export const homeTitle =
+  'Clínica de Nutrologia e Emagrecimento Savassi Belo Horizonte'
+
+/**
+ * DESATIVADA. A promocao de lancamento (1o mes por R$ 599) saiu do ar: o
+ * <Plan /> nao e mais renderizado em `src/app/page.tsx`, e nenhum numero
+ * daqui aparece mais em metadata, OG ou JSON-LD.
+ *
+ * O objeto fica inteiro de proposito. Se a promocao voltar, basta descomentar
+ * o <Plan /> na home; nada aqui precisa ser reescrito. Nao apagar.
  */
 export const plan = {
   name: 'Plano de Emagrecimento com Tirzepatida',
@@ -118,6 +136,45 @@ export const plan = {
     'Suporte direto via WhatsApp',
     'Consultas de retorno inclusas',
   ],
+} as const
+
+/**
+ * Os valores que a pagina realmente mostra, no <Pricing />.
+ *
+ * Duas linhas e nao um pacote fechado: a consulta e um preco cheio e
+ * definitivo, o plano e um piso. `plan.from` e "a partir de" porque dose,
+ * duracao e o que a pessoa ja usa mudam a mensalidade — prometer um numero
+ * unico aqui seria prometer o que a consulta ainda nao decidiu.
+ *
+ * A medicacao entra como condicional em todo lugar ("quando indicada"): a
+ * tirzepatida e prescricao, e o site nao pode sugerir que ela sai junto com
+ * o plano para qualquer pessoa que pagar.
+ */
+export const pricing = {
+  consultation: {
+    name: 'Consulta',
+    price: 450,
+    note: 'Avaliação clínica completa, sem compromisso de plano',
+    features: [
+      'Consulta médica com o Dr. Bruno Galdino',
+      'Avaliação física completa com bioimpedância',
+      'Leitura dos seus exames e do seu histórico',
+      'Conduta e plano de tratamento definidos na hora',
+    ],
+  },
+  plan: {
+    name: 'Plano de emagrecimento',
+    from: 1190,
+    period: 'por mês',
+    note: 'Acompanhamento contínuo com medicação inclusa quando indicada',
+    features: [
+      'Consultas de retorno inclusas',
+      'Monitoramento semanal da evolução',
+      'Tirzepatida inclusa quando houver indicação clínica',
+      'Ajuste de dose acompanhado de perto',
+      'Suporte direto via WhatsApp',
+    ],
+  },
 } as const
 
 /** Formata em Real sem centavos: 1490 -> "1.490" */

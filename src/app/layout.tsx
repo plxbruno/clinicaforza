@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Jost, Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { brl, clinic, plan } from '@/lib/clinic'
+import { brl, clinic, homeTitle, pricing } from '@/lib/clinic'
 import { homeJsonLd } from '@/lib/schema'
 import './globals.css'
 
@@ -19,8 +19,8 @@ const geist = Geist({
   display: 'swap',
 })
 
-// O titulo da home e absoluto de proposito: um sufixo de marca empurraria
-// o "R$ 599" para fora do corte de ~60 caracteres no resultado de busca.
+// O titulo da home e absoluto de proposito, e mora em `homeTitle`
+// (src/lib/clinic.ts) junto com a explicacao do limite de 60 caracteres.
 //
 // maximumScale/userScalable sairam daqui (estavam desde ee7155d): bloqueavam
 // o pinch-zoom, o que reprova o criterio 1.4.4 da WCAG e derruba o audit de
@@ -35,10 +35,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(clinic.site),
   title: {
-    absolute: `Emagrecimento em Belo Horizonte | Tirzepatida R$ ${brl(plan.firstMonth)}`,
+    absolute: homeTitle,
     template: `%s | ${clinic.name}`,
   },
-  description: `Plano de emagrecimento com tirzepatida inclusa: R$ ${brl(plan.firstMonth)} no 1º mês. Acompanhamento médico com ${clinic.doctor.name} na Savassi, Belo Horizonte.`,
+  description: `Consulta médica por R$ ${brl(pricing.consultation.price)} e plano de emagrecimento a partir de R$ ${brl(pricing.plan.from)}/mês, com tirzepatida inclusa quando indicada. Com ${clinic.doctor.name}, na Savassi, Belo Horizonte.`,
   keywords: [
     'emagrecimento Belo Horizonte',
     'clínica de emagrecimento BH',
@@ -64,13 +64,13 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     url: clinic.site,
     siteName: clinic.name,
-    title: `Emagrecimento em Belo Horizonte | Tirzepatida R$ ${brl(plan.firstMonth)}`,
-    description: `Plano com tirzepatida inclusa e acompanhamento médico: R$ ${brl(plan.firstMonth)} no 1º mês, na Savassi.`,
+    title: homeTitle,
+    description: `Consulta por R$ ${brl(pricing.consultation.price)} e plano a partir de R$ ${brl(pricing.plan.from)}/mês, com tirzepatida inclusa quando indicada, na Savassi.`,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Emagrecimento em Belo Horizonte | Tirzepatida R$ ${brl(plan.firstMonth)}`,
-    description: `Plano com tirzepatida inclusa e acompanhamento médico: R$ ${brl(plan.firstMonth)} no 1º mês, na Savassi.`,
+    title: homeTitle,
+    description: `Consulta por R$ ${brl(pricing.consultation.price)} e plano a partir de R$ ${brl(pricing.plan.from)}/mês, com tirzepatida inclusa quando indicada, na Savassi.`,
   },
   robots: {
     index: true,

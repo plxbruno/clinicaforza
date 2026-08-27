@@ -15,7 +15,7 @@
  * Google Business, nao daqui. Os depoimentos seguem so como copy visivel.
  */
 
-import { clinic, plan, brl } from './clinic'
+import { clinic, homeTitle, pricing, brl } from './clinic'
 import { faq, faqLastReviewed } from './faq'
 
 const id = (fragment: string) => `${clinic.site}/#${fragment}`
@@ -42,9 +42,9 @@ const medicalClinic = {
   logo: `${clinic.site}/icon.svg`,
   telephone: clinic.phone.e164,
   /**
-   * Indicador simbolico, nao numerico. O unico preco visivel na pagina e o
-   * R$ 599 do primeiro mes — anunciar aqui uma faixa que o visitante nao ve
-   * na tela seria dado estruturado divergente do conteudo.
+   * Indicador simbolico, nao numerico. Os precos exatos estao em `makesOffer`,
+   * que espelha exatamente os dois numeros do <Pricing />; uma faixa solta
+   * aqui seria dado estruturado sem contrapartida na tela.
    */
   priceRange: '$$',
   currenciesAccepted: 'BRL',
@@ -75,18 +75,49 @@ const medicalClinic = {
     `https://instagram.com/${clinic.instagram.doctor}`,
   ],
   employee: { '@id': DOCTOR_ID },
-  makesOffer: {
-    '@type': 'Offer',
-    name: `${plan.name} — 1º mês`,
-    description: `Acompanhamento médico de ${plan.months} meses com tirzepatida inclusa, avaliação com bioimpedância e monitoramento semanal. R$ ${brl(plan.firstMonth)} no primeiro mês.`,
-    url: `${clinic.site}/#plano`,
-    price: plan.firstMonth,
-    priceCurrency: 'BRL',
-    availability: 'https://schema.org/InStock',
-    areaServed: { '@type': 'City', name: clinic.address.city },
-    seller: { '@id': CLINIC_ID },
-    itemOffered: { '@type': 'MedicalTherapy', name: plan.name },
-  },
+  /**
+   * As duas ofertas sao exatamente as duas do <Pricing />, e na mesma ordem.
+   *
+   * A consulta tem `price` — e um valor fechado. O plano tem
+   * `UnitPriceSpecification` com `minPrice` e nao `price`, porque na tela ele
+   * e um "a partir de" mensal: declarar 1190 como preco firme prometeria no
+   * dado estruturado um numero que a pagina nao promete.
+   */
+  makesOffer: [
+    {
+      '@type': 'Offer',
+      name: pricing.consultation.name,
+      description: `Consulta médica com ${clinic.doctor.name}, com avaliação física completa e bioimpedância. R$ ${brl(pricing.consultation.price)}.`,
+      url: `${clinic.site}/#plano`,
+      price: pricing.consultation.price,
+      priceCurrency: 'BRL',
+      availability: 'https://schema.org/InStock',
+      areaServed: { '@type': 'City', name: clinic.address.city },
+      seller: { '@id': CLINIC_ID },
+      itemOffered: {
+        '@type': 'MedicalProcedure',
+        name: 'Consulta de avaliação para emagrecimento',
+      },
+    },
+    {
+      '@type': 'Offer',
+      name: pricing.plan.name,
+      description: `Acompanhamento médico mensal com consultas de retorno, monitoramento semanal e tirzepatida inclusa quando há indicação clínica. A partir de R$ ${brl(pricing.plan.from)} por mês.`,
+      url: `${clinic.site}/#plano`,
+      priceCurrency: 'BRL',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        minPrice: pricing.plan.from,
+        priceCurrency: 'BRL',
+        unitCode: 'MON',
+        unitText: 'mês',
+      },
+      availability: 'https://schema.org/InStock',
+      areaServed: { '@type': 'City', name: clinic.address.city },
+      seller: { '@id': CLINIC_ID },
+      itemOffered: { '@type': 'MedicalTherapy', name: pricing.plan.name },
+    },
+  ],
 }
 
 /**
@@ -139,7 +170,7 @@ const webPage = {
   '@type': 'MedicalWebPage',
   '@id': WEBPAGE_ID,
   url: clinic.site,
-  name: `Emagrecimento em ${clinic.address.city} | Tirzepatida R$ ${brl(plan.firstMonth)}`,
+  name: homeTitle,
   isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': CLINIC_ID },
   inLanguage: 'pt-BR',

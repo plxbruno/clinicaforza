@@ -8,9 +8,11 @@ import WhatsAppLink from './WhatsAppLink'
 // Depoimentos so entra quando ha depoimentos cadastrados — senao o link
 // apontaria para uma ancora que nao existe no HTML.
 const LINKS = [
-  { href: '#plano', label: 'Plano' },
   { href: '#tratamentos', label: 'Tratamentos' },
   { href: '#sobre', label: 'Dr. Bruno' },
+  // `#plano` agora e a secao de valores (<Pricing />), que fica abaixo do
+  // medico — a ordem daqui acompanha a ordem da pagina.
+  { href: '#plano', label: 'Valores' },
   ...(testimonials.length > 0
     ? [{ href: '#depoimentos', label: 'Depoimentos' }]
     : []),

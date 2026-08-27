@@ -27,7 +27,7 @@ export type FaqItem = {
  * Dr. Bruno revisar as respostas — um `lastReviewed` antigo com conteudo
  * novo e pior do que nao ter o campo.
  */
-export const faqLastReviewed = '2026-08-19'
+export const faqLastReviewed = '2026-08-27'
 
 export const faq: FaqItem[] = [
   {
@@ -49,12 +49,12 @@ export const faq: FaqItem[] = [
   {
     question: 'Quanto custa o tratamento com tirzepatida em Belo Horizonte?',
     answer:
-      'Na Clínica Forza o primeiro mês do plano de acompanhamento sai por R$ 599, com a tirzepatida já inclusa. O plano tem 3 meses e cobre consulta médica, avaliação física com bioimpedância, monitoramento semanal, consultas de retorno e suporte por WhatsApp. Não há taxa de adesão. Os valores das mensalidades seguintes são apresentados na consulta, antes de qualquer compromisso.',
+      'Na Clínica Forza a consulta custa R$ 450 e inclui avaliação clínica completa com bioimpedância. O plano de emagrecimento começa em R$ 1.190 por mês e cobre as consultas de retorno, o monitoramento semanal, o suporte por WhatsApp e a tirzepatida, quando há indicação clínica para ela. Não há taxa de adesão. O valor exato da mensalidade depende da dose e da duração do acompanhamento, e é fechado na consulta, antes de qualquer compromisso.',
   },
   {
     question: 'A tirzepatida está inclusa no valor do plano?',
     answer:
-      'Sim. A medicação está inclusa durante todo o período do plano.',
+      'Sim, quando há indicação clínica para ela. A medicação entra inclusa na mensalidade do plano durante todo o acompanhamento — você não compra a tirzepatida à parte. Se a avaliação mostrar que ela não é o tratamento certo para você, o plano segue sem medicação injetável, com a conduta que fizer sentido no seu caso.',
   },
   {
     question: 'Quais são os efeitos colaterais mais comuns?',

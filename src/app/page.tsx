@@ -1,6 +1,10 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
-import Plan from '@/components/Plan'
+// A promocao por tempo limitado saiu do ar. O componente continua no repo,
+// inteiro, junto com o `plan` em `src/lib/clinic.ts` — descomentar as duas
+// linhas abaixo devolve a secao exatamente como ela era.
+// import Plan from '@/components/Plan'
+import Pricing from '@/components/Pricing'
 import Services from '@/components/Services'
 import Doctor from '@/components/Doctor'
 import Testimonials from '@/components/Testimonials'
@@ -16,9 +20,12 @@ export default function Home() {
       <Header />
       <main id="top">
         <Hero />
-        <Plan />
+        {/* <Plan /> */}
         <Services />
         <Doctor />
+        {/* Valores vem depois do medico de proposito: a pessoa decide se
+            confia em quem assina antes de olhar o numero. */}
+        <Pricing />
         <Testimonials />
         <Faq />
         <MapSection />

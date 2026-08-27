@@ -1,9 +1,9 @@
 import { ImageResponse } from 'next/og'
-import { brl, clinic, plan } from '@/lib/clinic'
+import { brl, clinic, pricing } from '@/lib/clinic'
 
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
-export const alt = `${clinic.name} — emagrecimento em ${clinic.address.city} com tirzepatida a partir de R$ ${brl(plan.firstMonth)} no 1º mês`
+export const alt = `${clinic.name} — emagrecimento em ${clinic.address.city}: consulta por R$ ${brl(pricing.consultation.price)} e plano a partir de R$ ${brl(pricing.plan.from)} por mês`
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -48,7 +48,7 @@ export default function OpengraphImage() {
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ color: '#C9A55A', fontSize: 28 }}>
-              Tirzepatida inclusa · 1º mês por
+              Consulta com avaliação completa
             </div>
             <div
               style={{
@@ -59,11 +59,22 @@ export default function OpengraphImage() {
                 marginTop: 8,
               }}
             >
-              {`R$ ${brl(plan.firstMonth)}`}
+              {`R$ ${brl(pricing.consultation.price)}`}
             </div>
           </div>
-          <div style={{ color: 'rgba(255,255,255,0.65)', fontSize: 26 }}>
-            {clinic.doctor.name}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-end',
+              color: 'rgba(255,255,255,0.65)',
+              fontSize: 26,
+            }}
+          >
+            <div>{clinic.doctor.name}</div>
+            <div style={{ marginTop: 10 }}>
+              {`Plano a partir de R$ ${brl(pricing.plan.from)}/mês`}
+            </div>
           </div>
         </div>
       </div>
