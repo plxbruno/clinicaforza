@@ -154,7 +154,6 @@ export const pricing = {
   consultation: {
     name: 'Consulta',
     price: 450,
-    note: 'Avaliação clínica completa, sem compromisso de plano',
     features: [
       'Consulta médica com o Dr. Bruno Galdino',
       'Avaliação física completa com bioimpedância',
@@ -165,8 +164,6 @@ export const pricing = {
   plan: {
     name: 'Plano de emagrecimento',
     from: 1190,
-    period: 'por mês',
-    note: 'Acompanhamento contínuo com medicação inclusa quando indicada',
     features: [
       'Consultas de retorno inclusas',
       'Monitoramento semanal da evolução',

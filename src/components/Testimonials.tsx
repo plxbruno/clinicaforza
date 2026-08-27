@@ -31,7 +31,7 @@ export default function Testimonials() {
         >
           {testimonials.map((testimonial, i) => (
             <Reveal key={testimonial.name} delay={i * 90} className="h-full">
-              <figure className="h-full flex flex-col rounded-2xl border border-line bg-paper p-7">
+              <figure className="h-full flex flex-col text-center md:text-left rounded-2xl border border-line bg-paper p-7">
                 <span aria-hidden className="font-display text-gold text-5xl leading-none">
                   “
                 </span>

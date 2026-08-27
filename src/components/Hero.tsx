@@ -18,21 +18,13 @@ export default function Hero() {
           className="font-display text-white text-[2.05rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl font-medium max-w-4xl mx-auto text-balance animate-fade-up"
           style={{ animationDelay: '200ms' }}
         >
-          Emagrecimento em Belo Horizonte,{' '}
-          <span className="text-gold">com acompanhamento médico.</span>
+          Clínica de Nutrologia e{' '}
+          <span className="text-gold">emagrecimento</span> em Belo Horizonte.
         </h1>
-
-        <p
-          className="mt-6 max-w-xl mx-auto text-white/75 text-base sm:text-lg leading-relaxed text-pretty animate-fade-up"
-          style={{ animationDelay: '340ms' }}
-        >
-          Tratamento com tirzepatida inclusa e monitoramento semanal. Resultados
-          reais, sem atalhos e sem promessas vazias.
-        </p>
 
         <div
           className="mt-9 hidden sm:flex justify-center animate-fade-up"
-          style={{ animationDelay: '460ms' }}
+          style={{ animationDelay: '340ms' }}
         >
           <WhatsAppLink
             source="hero"

@@ -58,8 +58,8 @@ export default function Services() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, i) => (
             <Reveal key={service.title} delay={i * 90}>
-              <article className="h-full rounded-2xl border border-line bg-paper p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-lg hover:shadow-navy/5">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold/15">
+              <article className="h-full rounded-2xl border border-line bg-paper p-6 sm:p-7 text-center sm:text-left transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:shadow-lg hover:shadow-navy/5">
+                <span className="mx-auto sm:mx-0 flex h-11 w-11 items-center justify-center rounded-xl bg-gold/15">
                   <svg
                     aria-hidden
                     viewBox="0 0 24 24"
@@ -84,7 +84,7 @@ export default function Services() {
           ))}
 
           <Reveal delay={services.length * 90}>
-            <blockquote className="h-full flex flex-col justify-center rounded-2xl bg-navy p-6 sm:p-7">
+            <blockquote className="h-full flex flex-col justify-center rounded-2xl bg-navy p-6 sm:p-7 text-center sm:text-left">
               <p className="font-display text-white text-xl leading-snug font-medium">
                 “Cuide do seu corpo. É o único lugar que você tem para viver.”
               </p>

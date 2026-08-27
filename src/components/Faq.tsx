@@ -1,14 +1,5 @@
 import Reveal from './Reveal'
-import { faq, faqLastReviewed } from '@/lib/faq'
-import { clinic } from '@/lib/clinic'
-
-/** "2026-08-19" -> "19 de agosto de 2026" */
-const formatReviewDate = (iso: string) =>
-  new Date(`${iso}T12:00:00`).toLocaleDateString('pt-BR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+import { faq } from '@/lib/faq'
 
 export default function Faq() {
   return (
@@ -41,7 +32,11 @@ export default function Faq() {
             <Reveal key={item.question} delay={Math.min(i, 6) * 60}>
               <details className="group">
                 <summary className="flex w-full cursor-pointer items-start justify-between gap-4 py-5 list-none [&::-webkit-details-marker]:hidden">
-                  <h3 className="font-display text-navy text-base sm:text-lg font-semibold leading-snug text-balance">
+                  {/* Espelho do "+" a esquerda, so no mobile: com ele a
+                      pergunta fica opticamente centrada na linha em vez de
+                      empurrada para a esquerda pelo icone. */}
+                  <span aria-hidden className="mt-1 h-5 w-5 shrink-0 sm:hidden" />
+                  <h3 className="grow font-display text-navy text-base sm:text-lg font-semibold leading-snug text-balance text-center sm:text-left">
                     {item.question}
                   </h3>
                   <svg
@@ -56,27 +51,13 @@ export default function Faq() {
                     <path d="M12 5v14M5 12h14" />
                   </svg>
                 </summary>
-                <p className="text-ink-soft text-sm leading-relaxed pb-6 pr-9">
+                <p className="text-ink-soft text-sm leading-relaxed pb-6 text-center sm:text-left sm:pr-9">
                   {item.answer}
                 </p>
               </details>
             </Reveal>
           ))}
         </div>
-
-        {/*
-          Assinatura visivel do revisor. Espelha reviewedBy/lastReviewed do
-          MedicalWebPage: conteudo de saude e YMYL, e quem assina conta.
-        */}
-        <Reveal className="mt-8 text-center">
-          <p className="text-ink-soft text-xs leading-relaxed">
-            Conteúdo revisado por {clinic.doctor.name} · {clinic.doctor.crm} ·
-            atualizado em {formatReviewDate(faqLastReviewed)}.
-            <br />
-            As informações desta página são educativas e não substituem uma
-            consulta médica.
-          </p>
-        </Reveal>
       </div>
     </section>
   )

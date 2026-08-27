@@ -54,7 +54,9 @@
       "Bash(npm init *)",
       "Bash(npx playwright *)",
       "Bash(node shot.mjs)",
-      "Bash(node fonts.mjs)"
+      "Bash(node fonts.mjs)",
+      "Bash(git commit -m ' *)",
+      "Bash(gh auth *)"
     ]
   }
 }

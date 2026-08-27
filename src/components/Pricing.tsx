@@ -1,5 +1,4 @@
 import Reveal from './Reveal'
-import WhatsAppLink from './WhatsAppLink'
 import { brl, pricing } from '@/lib/clinic'
 
 /**
@@ -53,34 +52,27 @@ export default function Pricing() {
           </p>
           <h2
             id="plano-titulo"
-            className="font-display text-white text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance mb-4"
+            className="font-display text-white text-[1.9rem] sm:text-3xl md:text-4xl font-semibold leading-[1.12] text-balance"
           >
             O preço, antes de você perguntar.
           </h2>
-          <p className="mx-auto max-w-xl text-white/70 text-base sm:text-lg leading-relaxed text-pretty">
-            Sem taxa de adesão e sem pacote fechado no escuro. Você pode começar
-            só pela consulta e decidir o resto depois dela.
-          </p>
         </Reveal>
 
         {/* Sem `items-start`: os dois cartoes esticam ate a mesma altura
-            mesmo com um deles tendo uma linha a mais de inclusos, e os dois
-            botoes ficam alinhados na base. */}
+            mesmo com o plano carregando o balao de medicacao inclusa, e o
+            `justify-center` de cada um centra o proprio conteudo na sobra. */}
         <div className="grid gap-6 md:grid-cols-2">
           {/* Consulta avulsa */}
           <Reveal variant="scale" className="h-full">
-            <div className="flex h-full flex-col rounded-3xl bg-paper border border-line p-6 sm:p-8">
+            <div className="flex h-full flex-col items-center justify-center text-center rounded-3xl bg-paper border border-line p-6 sm:p-8">
               <p className="text-navy text-sm font-semibold tracking-wide">
                 {consultation.name}
               </p>
-              <p className="text-ink-soft text-sm mt-1 text-pretty">
-                {consultation.note}
-              </p>
 
-              <div className="mt-6 flex items-start gap-2">
+              <div className="mt-6 flex items-baseline justify-center gap-2">
                 <span
                   aria-hidden
-                  className="font-display text-navy text-2xl font-medium mt-1.5"
+                  className="font-display text-navy text-2xl font-medium self-start mt-1.5"
                 >
                   R$
                 </span>
@@ -88,71 +80,42 @@ export default function Pricing() {
                   {brl(consultation.price)}
                 </span>
               </div>
-
-              <ul className="mt-7 pt-6 border-t border-line space-y-3 grow">
-                {consultation.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm">
-                    <Check />
-                    <span className="text-ink leading-snug">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <WhatsAppLink
-                source="consulta"
-                className="group mt-8 flex items-center justify-center gap-2 w-full whitespace-nowrap rounded-full border border-navy px-5 sm:px-8 py-4 text-navy text-[0.95rem] sm:text-base font-semibold transition-all duration-200 hover:bg-navy hover:text-white"
-              >
-                <span>Agendar consulta</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">
-                  →
-                </span>
-              </WhatsAppLink>
             </div>
           </Reveal>
 
           {/* Plano de acompanhamento — o cartao que leva o destaque */}
           <Reveal variant="scale" delay={120} className="h-full">
-            <div className="flex h-full flex-col rounded-3xl bg-paper border border-gold shadow-xl shadow-navy/20 p-6 sm:p-8">
+            <div className="flex h-full flex-col items-center justify-center text-center rounded-3xl bg-paper border border-gold shadow-xl shadow-navy/20 p-6 sm:p-8">
               <p className="text-navy text-sm font-semibold tracking-wide">
                 {plan.name}
               </p>
-              <p className="text-ink-soft text-sm mt-1 text-pretty">
-                {plan.note}
+
+              {/* "a partir de" antes e "/mes" depois do numero: as duas
+                  metades da frase ficam onde a leitura as espera, em vez de
+                  virarem um "a partir de · por mes" solto embaixo. */}
+              <p className="mt-6 text-ink-soft text-sm">
+                a partir de
               </p>
 
-              <div className="mt-6 flex items-start gap-2">
+              <div className="mt-1 flex items-baseline justify-center gap-2">
                 <span
                   aria-hidden
-                  className="font-display text-navy text-2xl font-medium mt-1.5"
+                  className="font-display text-navy text-2xl font-medium self-start mt-1.5"
                 >
                   R$
                 </span>
                 <span className="font-display text-navy text-[3.25rem] sm:text-[3.75rem] font-semibold leading-[0.85] tracking-tight">
                   {brl(plan.from)}
                 </span>
-              </div>
-              <p className="text-gold-ink text-base font-semibold mt-2">
-                a partir de · {plan.period}
-              </p>
-
-              <ul className="mt-7 pt-6 border-t border-line space-y-3 grow">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm">
-                    <Check />
-                    <span className="text-ink leading-snug">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <WhatsAppLink
-                source="plano"
-                className="group mt-8 flex items-center justify-center gap-2 w-full whitespace-nowrap rounded-full bg-gold px-5 sm:px-8 py-4 text-navy text-[0.95rem] sm:text-base font-semibold transition-all duration-200 hover:bg-navy hover:text-white"
-              >
-                <span>Falar sobre o plano</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">
-                  →
+                <span className="text-ink-soft text-base font-medium">
+                  /mês
                 </span>
-              </WhatsAppLink>
+              </div>
+
+              <p className="mt-7 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/15 px-4 py-2 text-gold-ink text-sm font-semibold">
+                <Check />
+                Medicação inclusa
+              </p>
             </div>
           </Reveal>
         </div>

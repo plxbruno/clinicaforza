@@ -20,7 +20,7 @@ export const testimonials: Testimonial[] = [
   {
     name: 'Renato Maia',
     quote:
-      'Dr. Bruno é extremamente atencioso e educado. Fui muito bem atendido e, mesmo após semanas da última consulta, o contato a distância continua com a mesma excelência do presencial. Muito obrigado pela dedicação.',
+      'Dr. Bruno é extremamente atencioso e educado. Fui muito bem atendido e, mesmo após semanas da última consulta, o contato a distância continua com a mesma excelência do presencial.',
   },
   {
     name: 'Davi Dias',
