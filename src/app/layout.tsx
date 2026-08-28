@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Jost, Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { brl, clinic, homeTitle, pricing } from '@/lib/clinic'
+import { clinic, homeTitle } from '@/lib/clinic'
 import { homeJsonLd } from '@/lib/schema'
 import './globals.css'
 
@@ -38,8 +38,11 @@ export const metadata: Metadata = {
     absolute: homeTitle,
     template: `%s | ${clinic.name}`,
   },
-  description: `Consulta médica por R$ ${brl(pricing.consultation.price)} e plano de emagrecimento a partir de R$ ${brl(pricing.plan.from)}/mês, com tirzepatida inclusa quando indicada. Com ${clinic.doctor.name}, na Savassi, Belo Horizonte.`,
+  description: `Clínica de nutrologia e emagrecimento na Savassi, em Belo Horizonte. Avaliação com bioimpedância e acompanhamento médico contínuo com ${clinic.doctor.name}.`,
   keywords: [
+    'nutrologia Belo Horizonte',
+    'clínica de nutrologia BH',
+    'nutrologia Savassi',
     'emagrecimento Belo Horizonte',
     'clínica de emagrecimento BH',
     'tirzepatida Belo Horizonte',
@@ -65,12 +68,12 @@ export const metadata: Metadata = {
     url: clinic.site,
     siteName: clinic.name,
     title: homeTitle,
-    description: `Consulta por R$ ${brl(pricing.consultation.price)} e plano a partir de R$ ${brl(pricing.plan.from)}/mês, com tirzepatida inclusa quando indicada, na Savassi.`,
+    description: 'Nutrologia e emagrecimento na Savassi, em Belo Horizonte. Avaliação com bioimpedância e acompanhamento médico contínuo.',
   },
   twitter: {
     card: 'summary_large_image',
     title: homeTitle,
-    description: `Consulta por R$ ${brl(pricing.consultation.price)} e plano a partir de R$ ${brl(pricing.plan.from)}/mês, com tirzepatida inclusa quando indicada, na Savassi.`,
+    description: 'Nutrologia e emagrecimento na Savassi, em Belo Horizonte. Avaliação com bioimpedância e acompanhamento médico contínuo.',
   },
   robots: {
     index: true,
